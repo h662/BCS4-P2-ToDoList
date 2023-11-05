@@ -11,6 +11,16 @@ const Todo = ({ todo, index, todos, setTodos }) => {
     setTodos(newTodos);
   };
 
+  const onClickDelete = () => {
+    const newTodos = todos.filter((v, i) => {
+      if (v.id !== todo.id) {
+        return v;
+      }
+    });
+
+    setTodos(newTodos);
+  };
+
   return (
     <li className={`w-96 p-4 ${index % 2 ? "bg-gray-300" : "bg-gray-100"} `}>
       <span className="w-1/6 inline-block text-center">{todo.id}</span>
@@ -20,7 +30,10 @@ const Todo = ({ todo, index, todos, setTodos }) => {
       >
         {todo.title}
       </button>
-      <button className="w-1/12 inline-block text-center hover:text-red-600">
+      <button
+        className="w-1/12 inline-block text-center hover:text-red-600"
+        onClick={onClickDelete}
+      >
         Del
       </button>
     </li>
